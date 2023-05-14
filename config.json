@@ -9,7 +9,7 @@
     "fotoDonasi": "./qris.jpg",
     "pathimg": "./logolinux.png",
     "BotKey": "nnYw47mpsjpuAyv",
-    "OpenAIKey": "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",
+    "OpenAIKey": "",
     "audio_di_bagian_menu": "./menu.mp3",
     "auto_ai_japri": false,
     "auto_ai_grup": false,
