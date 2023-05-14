@@ -7,7 +7,7 @@
     "footer": "2023 © api.zeeoneofc.my.id",
     "sessionName": "session",
     "fotoDonasi": "./qris.jpg",
-    "pathimg": "./logolinux.jpg",
+    "pathimg": "./logolinux.png",
     "BotKey": "nnYw47mpsjpuAyv",
     "OpenAIKey": "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",
     "audio_di_bagian_menu": "./menu.mp3",
