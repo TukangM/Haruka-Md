@@ -1,6 +1,7 @@
 const { default: harukaConnect, useMultiFileAuthState, DisconnectReason, jidNormalizedUser, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto, delay } = require("@adiwajshing/baileys")
 const pino = require('pino')
 const { Boom } = require('@hapi/boom')
+const http = require("http")
 const fs = require('fs')
 const chalk = require('chalk')
 const FileType = require('file-type')
@@ -25,7 +26,21 @@ let server = createServer(app)
 let _qr = 'invalid'
 let PORT = 3000 || 8000 || 8080
 
-//require("http").createServer((_, res) => res.end("Uptime!")).listen(8080)
+// html bruh
+http.createServer((req, res) => {
+    // Read the index.html file
+    fs.readFile("index.html", (err, data) => {
+      if (err) {
+        // If an error occurs while reading the file, send a 500 (Internal Server Error) response
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end("Error loading index.html");
+      } else {
+        // Send the contents of the index.html file as the response
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.end(data);
+      }
+    });
+  }).listen(8080);
 
 //libb
 const { TelegraPh } = require('./lib/uploader')
