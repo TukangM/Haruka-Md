@@ -1,7 +1,9 @@
 const { default: harukaConnect, useMultiFileAuthState, DisconnectReason, jidNormalizedUser, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto, delay } = require("@adiwajshing/baileys")
 const pino = require('pino')
 const { Boom } = require('@hapi/boom')
-const http = require("http")
+const http = require('http')
+const WebSocket = require('ws')
+const { exec } = require('child_process')
 const fs = require('fs')
 const chalk = require('chalk')
 const FileType = require('file-type')
@@ -26,21 +28,35 @@ let server = createServer(app)
 let _qr = 'invalid'
 let PORT = 3000 || 8000 || 8080
 
-// html bruh
-http.createServer((req, res) => {
-    // Read the index.html file
-    fs.readFile("index.html", (err, data) => {
-      if (err) {
-        // If an error occurs while reading the file, send a 500 (Internal Server Error) response
-        res.writeHead(500, { "Content-Type": "text/plain" });
-        res.end("Error loading index.html");
-      } else {
-        // Send the contents of the index.html file as the response
-        res.writeHead(200, { "Content-Type": "text/html" });
-        res.end(data);
-      }
-    });
-  }).listen(8080);
+// // // html bruh
+
+// Create an HTTP server
+const server = http.createServer();
+
+// Create a WebSocket server
+const wss = new WebSocket.Server({ server });
+
+// Handle WebSocket connection
+wss.on('connection', function connection(ws) {
+  // Execute a command and send the output to the client
+  const command = 'uptime';
+  const child = exec(command);
+
+  child.stdout.on('data', function (data) {
+    ws.send(data.toString());
+  });
+
+  child.stderr.on('data', function (data) {
+    ws.send(data.toString());
+  });
+});
+
+// Start the server
+server.listen(8080, function () {
+  console.log('Server is running on port 8080');
+});
+
+// // // end html
 
 //libb
 const { TelegraPh } = require('./lib/uploader')
