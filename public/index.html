@@ -10,12 +10,46 @@
       padding: 20px;
     }
 
+    #navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    #navbar img {
+      height: 40px;
+      width: auto;
+    }
+
+    #navbar .links {
+      display: flex;
+    }
+
+    #navbar .links a {
+      color: #f1f1f1;
+      text-decoration: none;
+      margin-left: 10px;
+    }
+
     #terminal {
+      position: relative;
       background-color: #000;
+      border: 1px solid #ccc;
       border-radius: 5px;
       padding: 10px;
       overflow-y: scroll;
       height: 400px;
+      margin-bottom: 20px;
+    }
+
+    #terminal::before {
+      content: "Terminal - Linux";
+      position: absolute;
+      top: -20px;
+      left: 10px;
+      font-size: 16px;
+      font-weight: bold;
     }
 
     #terminal pre {
@@ -26,42 +60,48 @@
     }
 
     .cmd {
-      color: #00ff00; /* Green */
+      color: #8ae234; /* Green */
     }
 
     .error {
-      color: #ff0000; /* Red */
+      color: #ef2929; /* Red */
     }
   </style>
 </head>
 <body>
+  <div id="navbar">
+    <img src="logo.png" alt="Logo">
+    <div class="links">
+      <a href="http://example.com">Example Link 1</a>
+      <a href="http://example.com">Example Link 2</a>
+    </div>
+  </div>
   <div id="terminal">
     <pre id="output"></pre>
   </div>
+  <div>
+    <iframe height="80px" width="300px" frameborder="0" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UCldeWv7E4nseH3nRNyfw7-A" style="border: 0; width:300px; height:80px;"></iframe>
+  </div>
   <script>
+    function formatOutput(log) {
+      // Replace ANSI escape codes with appropriate CSS styles
+      log = log.replace(/\u001b\[1;31m~\u001b\[1;37m>\s\u001b\[1;32m CMD \u001b\[1;37m]/g, '<span class="cmd">~&gt; [ CMD ]</span>');
+      log = log.replace(/\u001b\[1;31m(.+?)\u001b\[0m/g, '<span class="error">$1</span>');
+      log = log.replace(/\u001b\[1;32m CMD \u001b\[1;37m]/g, '<span class="cmd">[ CMD ]</span>');
+
+      return log;
+    }
+
     function getConsoleLog() {
       fetch('console.log')
         .then(response => response.text())
         .then(log => {
           const outputPre = document.getElementById('output');
           outputPre.innerHTML = formatOutput(log);
-          outputPre.scrollTop = outputPre.scrollHeight;
+          outputPre.scrollTop = outputPre.scrollHeight; // Scroll to the bottom
           setTimeout(getConsoleLog, 2000); // Fetch log every 2 seconds
         })
         .catch(error => console.error(error));
-    }
-
-    function formatOutput(log) {
-      // Replace color codes with appropriate HTML tags
-      log = log.replace(/~&gt; \[ CMD \] (.*?)(?=\n|$)/g, '<span class="cmd">~&gt; [ CMD ] $1</span>');
-      log = log.replace(/(.*?\[ CMD \] \d{2}:\d{2}:\d{2} WIB.*)/g, '<span class="cmd">$1</span>');
-      log = log.replace(/(.*?\[ CMD \].*?from.*?args : \d)/g, '<span class="cmd">$1</span>');
-      log = log.replace(/(.*?\[ CMD \].*?from.*?in.*?args : \d)/g, '<span class="cmd">$1</span>');
-      log = log.replace(/(.*?\[ CMD \].*?in.*?args : \d)/g, '<span class="cmd">$1</span>');
-      log = log.replace(/(.*?output.*)/g, '<span class="cmd">$1</span>');
-      log = log.replace(/(.*?error.*)/g, '<span class="error">$1</span>');
-
-      return log;
     }
 
     getConsoleLog();
