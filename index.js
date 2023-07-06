@@ -1,9 +1,6 @@
 const { default: harukaConnect, useMultiFileAuthState, DisconnectReason, jidNormalizedUser, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto, delay } = require("@adiwajshing/baileys")
 const pino = require('pino')
 const { Boom } = require('@hapi/boom')
-const http = require('http')
-const WebSocket = require('ws')
-const { exec } = require('child_process')
 const fs = require('fs')
 const chalk = require('chalk')
 const FileType = require('file-type')
@@ -26,37 +23,9 @@ let app = express()
 const { createServer } = require ('http')
 let server = createServer(app)
 let _qr = 'invalid'
-let PORT = 3000 || 8000 || 8080
+let PORT = 3000 || 8000 || 8080 || 26976
 
-// // // html bruh
-
-// Create an HTTP server
-const server = http.createServer();
-
-// Create a WebSocket server
-const wss = new WebSocket.Server({ server });
-
-// Handle WebSocket connection
-wss.on('connection', function connection(ws) {
-  // Execute a command and send the output to the client
-  const command = 'uptime';
-  const child = exec(command);
-
-  child.stdout.on('data', function (data) {
-    ws.send(data.toString());
-  });
-
-  child.stderr.on('data', function (data) {
-    ws.send(data.toString());
-  });
-});
-
-// Start the server
-server.listen(8080, function () {
-  console.log('Server is running on port 8080');
-});
-
-// // // end html
+// require("http").createServer((_, res) => res.end("Uptime!")).listen(26976)
 
 //libb
 const { TelegraPh } = require('./lib/uploader')

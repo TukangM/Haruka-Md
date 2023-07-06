@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real-Time Output</title>
+  <style>
+    body {
+      background-color: #292929;
+      color: #f1f1f1;
+      font-family: monospace;
+      padding: 20px;
+    }
+
+    #terminal {
+      background-color: #000;
+      border-radius: 5px;
+      padding: 10px;
+      overflow-y: scroll;
+      height: 400px;
+    }
+
+    #terminal pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      color: #f1f1f1;
+    }
+
+    .cmd {
+      color: #00ff00; /* Green */
+    }
+
+    .error {
+      color: #ff0000; /* Red */
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal">
+    <pre id="output"></pre>
+  </div>
+  <script>
+    function getConsoleLog() {
+      fetch('console.log')
+        .then(response => response.text())
+        .then(log => {
+          const outputPre = document.getElementById('output');
+          outputPre.innerHTML = formatOutput(log);
+          outputPre.scrollTop = outputPre.scrollHeight;
+          setTimeout(getConsoleLog, 2000); // Fetch log every 2 seconds
+        })
+        .catch(error => console.error(error));
+    }
+
+    function formatOutput(log) {
+      // Replace color codes with appropriate HTML tags
+      log = log.replace(/~&gt; \[ CMD \] (.*?)(?=\n|$)/g, '<span class="cmd">~&gt; [ CMD ] $1</span>');
+      log = log.replace(/(.*?\[ CMD \] \d{2}:\d{2}:\d{2} WIB.*)/g, '<span class="cmd">$1</span>');
+      log = log.replace(/(.*?\[ CMD \].*?from.*?args : \d)/g, '<span class="cmd">$1</span>');
+      log = log.replace(/(.*?\[ CMD \].*?from.*?in.*?args : \d)/g, '<span class="cmd">$1</span>');
+      log = log.replace(/(.*?\[ CMD \].*?in.*?args : \d)/g, '<span class="cmd">$1</span>');
+      log = log.replace(/(.*?output.*)/g, '<span class="cmd">$1</span>');
+      log = log.replace(/(.*?error.*)/g, '<span class="error">$1</span>');
+
+      return log;
+    }
+
+    getConsoleLog();
+  </script>
+</body>
+</html>

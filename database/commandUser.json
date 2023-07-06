@@ -4,7 +4,7 @@
     "db": [
       {
         "nama": "#speed",
-        "count": 66
+        "count": 69
       },
       {
         "nama": "#menu",
@@ -1465,7 +1465,7 @@
     "db": [
       {
         "nama": "#speed",
-        "count": 22
+        "count": 25
       },
       {
         "nama": "#menu",
@@ -2480,7 +2480,7 @@
       },
       {
         "nama": "#afk",
-        "count": 1
+        "count": 2
       },
       {
         "nama": "#menu",
@@ -2488,7 +2488,7 @@
       },
       {
         "nama": "#speed",
-        "count": 2
+        "count": 4
       },
       {
         "nama": "#buylimit",
@@ -2501,6 +2501,10 @@
       {
         "nama": "#infobot",
         "count": 1
+      },
+      {
+        "nama": "#transfer",
+        "count": 2
       }
     ]
   },
@@ -2561,6 +2565,28 @@
       },
       {
         "nama": "#listpremium",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "jid": "6285782789055@s.whatsapp.net",
+    "db": [
+      {
+        "nama": "#sticker",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "jid": "6281912935681@s.whatsapp.net",
+    "db": [
+      {
+        "nama": "#afk",
+        "count": 1
+      },
+      {
+        "nama": "#menu",
         "count": 1
       }
     ]
