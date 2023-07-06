@@ -2525,7 +2525,7 @@
       },
       {
         "nama": "#afk",
-        "count": 9
+        "count": 10
       },
       {
         "nama": "#speed",
@@ -2560,7 +2560,11 @@
       },
       {
         "nama": "#afk",
-        "count": 2
+        "count": 3
+      },
+      {
+        "nama": "#smeme",
+        "count": 3
       }
     ]
   },
@@ -2574,6 +2578,10 @@
       {
         "nama": "#listpremium",
         "count": 1
+      },
+      {
+        "nama": "#afk",
+        "count": 2
       }
     ]
   },
@@ -2622,7 +2630,7 @@
     "db": [
       {
         "nama": "#afk",
-        "count": 1
+        "count": 2
       }
     ]
   },
@@ -2662,7 +2670,7 @@
     "db": [
       {
         "nama": "#afk",
-        "count": 1
+        "count": 2
       }
     ]
   },
@@ -2716,6 +2724,15 @@
   },
   {
     "jid": "6282111499123@s.whatsapp.net",
+    "db": [
+      {
+        "nama": "#afk",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "jid": "62859106899169@s.whatsapp.net",
     "db": [
       {
         "nama": "#afk",
