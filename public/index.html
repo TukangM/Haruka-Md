@@ -99,10 +99,17 @@
         .then(log => {
           const outputPre = document.getElementById('output');
           outputPre.innerHTML = formatOutput(log);
-          outputPre.scrollTop = outputPre.scrollHeight; // Scroll to the bottom
-          setTimeout(getConsoleLog, 2000); // Fetch log every 2 seconds
+          pageScroll(); // Call the pageScroll function for scrolling
         })
-        .catch(error => console.error(error));
+        .catch(error => console.error(error))
+        .finally(() => {
+          setTimeout(getConsoleLog, 2000); // Fetch log every 2 seconds
+        });
+    }
+
+    function pageScroll() {
+      const terminal = document.getElementById('terminal');
+      terminal.scrollTop = terminal.scrollHeight;
     }
 
     getConsoleLog();
