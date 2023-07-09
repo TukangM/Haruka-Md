@@ -1,7 +1,15 @@
 ## HarukaMD modified haruka.js
 feature showing logs with an custom port or 8080 / 80 / 443
 ![image](https://github.com/TukangM/Haruka-Md/assets/91467886/a86346f2-040a-4006-a2ec-6d0a1c5f2e1e)
-
+if you want use this repo as your whatsapp bot. you need change your branding and logo and some config at
+ - logolinux.pmg
+ - memu.mp
+ - public/index.html
+# Generate your favicon.ico with your branding at https://realfavicongenerator.net/ to change the logo logolinux.png*
+ - public/apple-touch-icon.png*
+ - public/browserconfig.xml*
+ - public/index.html*
+ - public/logolinux.png*/*
 
 ## Edit Owner 
 
