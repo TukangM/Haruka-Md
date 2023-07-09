@@ -91,10 +91,15 @@
   </div>
   <script>
     function formatOutput(log) {
+      // Remove the initial ANSI escape codes from the log
+      log = log.replace(/\u001b\[1;31m~\u001b\[1;37m>\s/g, '~&gt; ');
+
       // Replace ANSI escape codes with appropriate CSS styles
-      log = log.replace(/\u001b\[1;31m~\u001b\[1;37m>\s\u001b\[1;32m CMD \u001b\[1;37m]/g, '<span class="cmd">~&gt; [ CMD ]</span>');
-      log = log.replace(/\u001b\[1;31m(.+?)\u001b\[0m/g, '<span class="error">$1</span>');
-      log = log.replace(/\u001b\[1;32m CMD \u001b\[1;37m]/g, '<span class="cmd">[ CMD ]</span>');
+      log = log.replace(/\u001b\[1;31m~\u001b\[1;37m>\s\u001b\[1;32m CMD \u001b\[1;37m]/g, '<span class="cmd">[CMD]</span>');
+      log = log.replace(/\u001b\[1;31m(.+?)\u001b\[0m/g, '<span class="cmd">$1</span>');
+      log = log.replace(/\u001b\[1;32m CMD \u001b\[1;37m]/g, '<span class="cmd">CMD</span>');
+      log = log.replace(/\[/g, ''); // Remove extra opening brackets
+
 
       return log;
     }
