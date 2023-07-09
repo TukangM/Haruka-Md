@@ -5,7 +5,7 @@ if you want use this repo as your whatsapp bot. you need change your branding an
  - logolinux.pmg
  - memu.mp
  - public/index.html
-# Generate your favicon.ico with your branding at https://realfavicongenerator.net/ to change the logo logolinux.png*
+### Generate your favicon.ico with your branding at https://realfavicongenerator.net/ to change the logo logolinux.png* *required*
  - public/apple-touch-icon.png*
  - public/browserconfig.xml*
  - public/index.html*
