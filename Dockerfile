@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM node:lts-buster
 
 # Update package lists
 RUN apt-get update && \
