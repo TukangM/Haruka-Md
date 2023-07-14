@@ -13,14 +13,12 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y ffmpeg imagemagick webp
 
 # Copy package.json and install dependencies
-COPY package.json .
-RUN npm install
+RUN npm i ws
+RUN npm i
 
-# Copy the rest of the files
-COPY . .
 
 # Expose port
 EXPOSE 5000
 
 # Run the command to start the application
-CMD ["node", "haruka.js"]
+CMD node haruka.js
