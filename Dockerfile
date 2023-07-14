@@ -13,7 +13,7 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y ffmpeg imagemagick webp
 
 # Copy package.json and install dependencies
-RUN npm i ws
+COPY package.json .
 RUN npm i
 
 
