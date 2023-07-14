@@ -1,19 +1,12 @@
-FROM node:lts-buster
+FROM ubuntu:latest
 
-RUN apt-get update && \
-  apt-get install -y \
-  ffmpeg \
-  imagemagick \
-  webp && \
-  apt-get upgrade -y && \
-  rm -rf /var/lib/apt/lists/*
+# Update package lists
+RUN apt-get update
 
-COPY package.json .
+# Install Node.js 16 and npm
+RUN apt-get install -y nodejs npm yarn sudo
 
-RUN npm install
-
-COPY . .
-
-EXPOSE 5000
-
-CMD ["npm", "start"]
+# Run command(s) after installation
+RUN pwd
+RUN npm i
+CMD node haruka.js
