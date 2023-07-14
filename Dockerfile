@@ -1,12 +1,20 @@
 FROM ubuntu:latest
 
-# Update package lists
-RUN apt-get update
+RUN apt-get update && \
+  apt-get install -y \
+  ffmpeg \
+  imagemagick \
+  webp && \
+  apt-get upgrade -y && \
+  rm -rf /var/lib/apt/lists/*
 
-# Install Node.js 16 and npm
-RUN apt-get install -y nodejs npm yarn sudo
+COPY package.json .
 
-# Run command(s) after installation
-RUN pwd
-RUN npm i
-CMD node haruka.js
+RUN npm install openai
+RUN npm install
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["node", "haruka.js"]
