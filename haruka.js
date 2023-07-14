@@ -67,7 +67,7 @@ wss.on('connection', (ws) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Start the server
-const PORT = 8080;
+const PORT = 5000;
 const serverInstance = server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
