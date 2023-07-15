@@ -4,4 +4,4 @@ FROM node:16-alpine
 COPY . .
 RUN npm i
 EXPOSE 5000
-CMD ["node", "src/index.js"]
+CMD ["node", "index.js"]
