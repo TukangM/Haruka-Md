@@ -13,7 +13,6 @@ RUN apt-get install -y ffmpeg imagemagick webp
 
 # install nodejs version manager
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
-RUN command -v nvm
 RUN nvm install 16
 RUN node -v
 
