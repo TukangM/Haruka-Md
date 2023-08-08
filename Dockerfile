@@ -13,7 +13,7 @@ RUN apt-get install -y ffmpeg imagemagick webp
 
 # Copy package.json and install dependencies
 COPY . .
-RUN npm i
+RUN npm install
 
 
 # Expose port
