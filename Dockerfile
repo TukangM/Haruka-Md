@@ -12,9 +12,9 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y ffmpeg imagemagick webp
 
 # install nodejs version manager
-RUN curl -sL https://deb.nodesource.com/setup_16.x 1 | bash -
-RUN apt update -y
-RUN apt install -y nodejs
+#RUN curl -sL https://deb.nodesource.com/setup_16.x 1 | bash -
+#RUN apt update -y
+#RUN apt install -y nodejs
 
 RUN node --version
 
