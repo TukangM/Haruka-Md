@@ -1,4 +1,4 @@
-FROM node:lts-buster
+FROM node:16
 
 # Update package lists
 RUN apt-get update && \
