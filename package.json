@@ -18,7 +18,7 @@
   "author": "ZeeoneOfc",
   "license": "MIT",
   "dependencies": {
-    "@adiwajshing/baileys" : "npm:baileys@^6.0.9",
+    "@whiskeysockets/baileys": "^6.0.9",
     "@adiwajshing/keyed-db": "^0.2.4",
     "@bochilteam/scraper": "^2.0.0",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
