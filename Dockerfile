@@ -1,16 +1,20 @@
-FROM node:16-buster-slim
+FROM node:lts-buster
 
+# Update package lists
 RUN apt-get update && \
-  apt-get install -y \
-  ffmpeg \
-  imagemagick \
-  webp && \
-  apt-get upgrade -y && \
-  rm -rf /var/lib/apt/lists/*
+    apt-get upgrade -y && \
+    apt-get install -y curl
 
+# Install Node.js
+RUN apt-get install -y nodejs
+
+# Install ffmpeg, imagemagick, and webp
+RUN apt-get install -y ffmpeg imagemagick webp
+
+# Copy package.json and install dependencies
 COPY . .
+RUN npm i
 RUN npm install -g npm@9.8.1
-RUN npm install
 
 EXPOSE 5000
 
